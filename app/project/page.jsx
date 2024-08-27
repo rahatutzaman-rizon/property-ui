@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-import ClipLoader from 'react-spinners/ClipLoader';
+
 import Button from '../Reusable/Button';
+import Spinner from '../Reusable/Spinner';
 
 export default function Projects() {
   const [activeTab, setActiveTab] = useState('ongoing');
@@ -64,9 +65,7 @@ export default function Projects() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center h-48">
-          <ClipLoader color="#ff5e14" loading={loading} size={50} />
-        </div>
+        <Spinner loading={loading} />
       ) : (
         activeProject && (
           <>

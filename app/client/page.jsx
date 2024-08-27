@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import { ClipLoader } from 'react-spinners';
+
 import Spinner from '../Reusable/Spinner';
 
 const ClientsReviews = () => {
