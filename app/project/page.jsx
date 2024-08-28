@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 
 import Button from '../Reusable/Button';
 import Spinner from '../Reusable/Spinner';
+import Link from 'next/link';
 
 export default function Projects() {
   const [activeTab, setActiveTab] = useState('ongoing');
@@ -94,16 +95,25 @@ export default function Projects() {
                   </motion.div>
                 </motion.div>
               ))}
+
+            
+
+
             </div>
+
+            <div className="text-center mt-8">
+        
+        <Link href={`projects/${activeProject?._id}`}>
+          <Button className=" border border-primary  ">
+            See More »
+          </Button>
+          </Link>
+        </div>
           </>
         )
       )}
       
-      <div className="text-center mt-8">
-        <Button className=" border border-primary  ">
-          See More »
-        </Button>
-      </div>
+   
     </div>
   );
 }
