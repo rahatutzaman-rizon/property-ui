@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 
 import Link from 'next/link';
 import Button from '../Reusable/Button';
+import Image from 'next/image';
+import img from '../../public/images/jmc-logo.png'
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -26,10 +28,15 @@ const Header = () => {
         <div className='px-4 sm:px-6 lg:px-8'>
 
         <Link href="/" className="text-primary font-bold text-lg sm:text-xl md:text-2xl lg:text-2xl">
-        JMC Group
-                
-         
-          <p className='text-primary text-sm sm:text-base md:text-lg'>JMC Asset Management Ltd.</p>
+      
+        <Image
+                    src={img}
+                    alt={`jmc asset management logo`}
+                    width={30}
+                    height={30}
+                    className="rounded-lg transition-opacity duration-300"
+                  />
+          <p className='text-primary text-sm sm:text-base md:text-2xl'>JMC Asset Management Ltd.</p>
 
           </Link>
         </div>
