@@ -1,4 +1,6 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import img from '../images/jmc-logo.png'
 
 export default function Footer() {
   return (
@@ -6,7 +8,16 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
           <div className="mb-6 sm:mb-0">
-            <h2 className="text-green-500 text-lg sm:text-xl font-bold mb-2 sm:mb-4">JMC Group</h2>
+           
+          <Image
+  src={img}
+  alt="jmc asset management logo"
+  width={120}
+  height={100}
+  className="rounded-lg transition-opacity duration-300"
+/>
+
+
             <p>JMC Asset Management Ltd.</p>
           </div>
           <div className="mb-6 sm:mb-0">

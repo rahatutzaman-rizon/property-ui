@@ -9,7 +9,7 @@ import Button from '../Reusable/Button';
 import Spinner from '../Reusable/Spinner';
 import Link from 'next/link';
 
-export default function Projects() {
+export default function ProjectPage() {
   const [activeTab, setActiveTab] = useState('ongoing');
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);

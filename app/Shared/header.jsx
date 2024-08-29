@@ -23,21 +23,21 @@ const Header = () => {
    
 
     <header className="bg-white sticky top-0 z-50">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-4 flex items-center justify-between py-4 gap-4">
+      <div className="max-w-7xl h-16  mx-auto px-4 sm:px-6 lg:px-2 flex items-center justify-between my-4 gap-4">
         
-        <div className='px-4 sm:px-6 lg:px-8'>
+        <div className=' sm:px-6 lg:px-2'>
 
-        <Link href="/" className="text-primary font-bold text-lg sm:text-xl md:text-2xl lg:text-2xl">
+        <Link href="/" className="">
       
         <Image
-                    src={img}
-                    alt={`jmc asset management logo`}
-                    width={30}
-                    height={30}
-                    className="rounded-lg transition-opacity duration-300"
-                  />
-          <p className='text-primary text-sm sm:text-base md:text-2xl'>JMC Asset Management Ltd.</p>
+  src={img}
+  alt="jmc asset management logo"
+  width={150}
+  height={100}
+  className="rounded-lg transition-opacity duration-300"
+/>
 
+          
           </Link>
         </div>
     
