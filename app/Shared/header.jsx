@@ -22,8 +22,8 @@ const Header = () => {
   return (
    
 
-    <header className="bg-white sticky top-0 z-50">
-      <div className="max-w-7xl h-16  mx-auto px-4 sm:px-6 lg:px-2 flex items-center justify-between my-4 gap-4">
+    <header className="bg-[#F0FAFF] sticky top-0 z-50">
+      <div className="max-w-7xl h-12  mx-auto px-4 sm:px-6 lg:px-2 flex items-center justify-between my-4 gap-4">
         
         <div className=' sm:px-6 lg:px-2'>
 
@@ -32,7 +32,7 @@ const Header = () => {
         <Image
   src={img}
   alt="jmc asset management logo"
-  width={150}
+  width={140}
   height={100}
   className="rounded-lg transition-opacity duration-300"
 />
@@ -52,10 +52,10 @@ const Header = () => {
             </button>
             {isDropdownOpen && (
               <div className="absolute left-0 mt-2 w-40 bg-white rounded-lg shadow-lg z-50">
-                <Link href="/our-team" className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100">
+                <Link href="/about" className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100">
                   Our Team
                 </Link>
-                <Link href="/history" className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100">
+                <Link href="/about" className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100">
                   History
                 </Link>
               </div>
@@ -63,6 +63,9 @@ const Header = () => {
           </div>
           <Link href="/project" className="focus:outline-none text-primary">
             Project
+          </Link>
+          <Link href="/" className="focus:outline-none text-primary">
+            Blogs
           </Link>
           <Link href="/achivement" className="focus:outline-none text-primary">
             Our Achievement
@@ -95,10 +98,10 @@ const Header = () => {
               </button>
               {isDropdownOpen && (
                 <div className="pl-4 space-y-2 mt-2">
-                  <Link href="/our-team" className="block w-full text-left py-2 text-sm text-gray-700">
+                  <Link href="/about" className="block w-full text-left py-2 text-sm text-gray-700">
                     Our Team
                   </Link>
-                  <Link href="/history" className="block w-full text-left py-2 text-sm text-gray-700">
+                  <Link href="/about" className="block w-full text-left py-2 text-sm text-gray-700">
                     History
                   </Link>
                 </div>
@@ -107,6 +110,11 @@ const Header = () => {
             <Link href="/project" className="block w-full text-left py-2">
               Project
             </Link>
+ 
+            <Link href="/" className="focus:outline-none text-primary">
+           Blogs
+          </Link>
+ 
             <Link href="/achivement" className="block w-full text-left py-2">
               Our Achievement
             </Link>

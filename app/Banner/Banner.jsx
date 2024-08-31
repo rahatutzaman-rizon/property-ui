@@ -53,12 +53,12 @@ const Banner = () => {
       </div>
 
       {/* Text Content */}
-      <div className="absolute inset-0 flex items-center px-8 md:px-12 lg:px-24  sm:ml-8 md:ml-56">
+      <div className="absolute inset-0 flex items-center px-8 md:px-12 lg:px-24  sm:ml-8 md:ml-56 mt-[-64px]">
         <div className="max-w-2xl">
-          <p className="text-lg font-semibold text-primary uppercase tracking-widest mb-4">
+          <p className="text-lg font-semibold text-primary uppercase tracking-widest mb-4 ">
             Discover | Dream | Live
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-6">
+          <h1 className=" md:text-5xl lg:text-7xl text-4xl font-bold text-primary leading-tight mb-16" >
             Unlock Your Ideal Space
           </h1>
           <p className="text-lg text-primary mb-8">
@@ -74,20 +74,20 @@ const Banner = () => {
       </div>
 
       {/* Navigation Buttons - Always Visible */}
-      <button
+      {/* <button
         onClick={() => changeImage('prev')}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-4 rounded-full bg-primary  transition-all duration-300 z-30"
         aria-label="Previous slide"
       >
         <FaChevronLeft size={24} />
-      </button>
-      <button
+      </button> */}
+      {/* <button
         onClick={() => changeImage('next')}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-4 rounded-full bg-primary transition-all duration-300 z-30"
         aria-label="Next slide"
       >
         <FaChevronRight size={24} />
-      </button>
+      </button> */}
 
       {/* Navigation Dots */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">

@@ -3,7 +3,8 @@ import Image from 'next/image';
 
 export default function Achievement() {
   return (
-    <div className="bg-white text-primary min-h-screen">
+   <div className='bg-[#FAFDFF]'>
+     <div className=" text-primary min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <section className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4 transition-colors duration-300 ">Our Achievements</h2>
@@ -29,6 +30,7 @@ export default function Achievement() {
         </div>
       </div>
     </div>
+   </div>
   );
 }
 

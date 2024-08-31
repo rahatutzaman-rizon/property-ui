@@ -15,7 +15,7 @@ module.exports = {
 
       colors: {
         primary: {
-          DEFAULT: '#004c4c', // This is the teal-400 color, you can change it to your preferred color
+          DEFAULT: '#003349', // This is the teal-400 color, you can change it to your preferred color
           dark: '#0d9488', // Darker shade for hover or other states
         },
       },

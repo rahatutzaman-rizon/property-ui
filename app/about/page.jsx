@@ -5,7 +5,8 @@ import Image from 'next/image';
 
 const AboutUs = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 gap-8 sm:gap-12 bg-white mt-8 sm:mt-12">
+    <div className='bg-[#F5FCFF]'>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 gap-8 sm:gap-12   ">
       {/* About Us Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left Side Text */}
@@ -47,6 +48,7 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

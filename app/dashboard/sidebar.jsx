@@ -10,11 +10,8 @@ const Sidebar = () => {
 
   const navItems = [
     { href: '/dashboard', icon: Home, label: 'Dashboard' },
-    { href: '/dashboard/ProjectCreate', icon: User, label: 'ProjectCreate' },
-
-   
+  
     { href: '/dashboard/ProjectUpdate', icon: Goal, label: 'ProjectUpdate' },
-    { href: '/dashboard/ProjectDelete', icon: Delete, label: 'ProjectDelete' },
     
   ];
 
