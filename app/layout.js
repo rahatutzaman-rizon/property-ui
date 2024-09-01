@@ -6,7 +6,7 @@ import Footer from "./Shared/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "JMC Technology",
+  title: "JMC Asset Management ",
   description: "JMC Asset Management",
 };
 

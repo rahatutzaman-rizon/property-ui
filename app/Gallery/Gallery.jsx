@@ -1,132 +1,88 @@
-"use client";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCoverflow, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import Image from 'next/image';
 
-import React, { useState } from "react";
-import Image from "next/image";
+const images = [
+  {
+    src: "https://i.ibb.co/ZgSFhmt/anastasia-yaroshenko-q-Ea-YOM4-Yq-HQ-unsplash.jpg",
+    width: 1200,
+    height: 800,
+  },
+  {
+    src: "https://i.ibb.co/3m52MP4/justus-menke-hc7-MCn4vk6g-unsplash.jpg",
+    width: 1200,
+    height: 800,
+  },
+  {
+    src: "https://i.ibb.co/bsCNCqf/chuttersnap-Iboom5tbfvs-unsplash.jpg",
+    width: 1200,
+    height: 800,
+  },
+  {
+    src: "https://i.ibb.co/pncCvS5/wendy-liga-a-Sl-IN-fh-KKU-unsplash.jpg",
+    width: 1200,
+    height: 800,
+  },
+  {
+    src: "https://i.ibb.co/nsFfbNg/ryan-spencer-WJDR8-Qx-VR8-unsplash.jpg",
+    width: 1200,
+    height: 800,
+  },
+];
 
 const Gallery = () => {
-  const images = [
-    {
-      src: "https://i.ibb.co/ZgSFhmt/anastasia-yaroshenko-q-Ea-YOM4-Yq-HQ-unsplash.jpg",
-      width: 1200,
-      height: 800,
-    },
-    {
-      src: "https://i.ibb.co/3m52MP4/justus-menke-hc7-MCn4vk6g-unsplash.jpg",
-      width: 1200,
-      height: 800,
-    },
-    {
-      src: "https://i.ibb.co/bsCNCqf/chuttersnap-Iboom5tbfvs-unsplash.jpg",
-      width: 1200,
-      height: 800,
-    },
-    {
-      src: "https://i.ibb.co/pncCvS5/wendy-liga-a-Sl-IN-fh-KKU-unsplash.jpg",
-      width: 1200,
-      height: 800,
-    },
-    {
-      src: "https://i.ibb.co/nsFfbNg/ryan-spencer-WJDR8-Qx-VR8-unsplash.jpg",
-      width: 1200,
-      height: 800,
-    },
-  ];
-
-  const [startIndex, setStartIndex] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(1);
-
-  const handlePrev = () => {
-    setStartIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-    setActiveIndex(1);
-  };
-
-  const handleNext = () => {
-    setStartIndex((prevIndex) => (prevIndex + 1) % images.length);
-    setActiveIndex(1);
-  };
-
-  const visibleImages = [
-    images[(startIndex - 1 + images.length) % images.length],
-    images[startIndex],
-    images[(startIndex + 1) % images.length],
-  ];
-
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-4xl mt-2 text-center text-primary font-bold mb-8">
-        Welcome to our gallery
-      </h1>
-      <div className="flex justify-center items-center h-[40vh] md:h-[50vh] overflow-hidden">
-        {visibleImages.map((img, index) => (
-          <div
-            key={index}
-            className={`w-1/3 h-full transition-all duration-300 ${
-              index === activeIndex ? "scale-110 z-10" : "scale-90 opacity-50"
-            }`}
-          >
+    <div className="w-full max-w-7xl mx-auto my-10">
+      <Swiper
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={3}
+        loop={true}  // Enables continuous looping of slides
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows: false,
+        }}
+        pagination={{ clickable: true }}
+        modules={[EffectCoverflow, Pagination]}
+        className="h-[700px] bg-gray-100 p-10 rounded-lg shadow-xl"
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={index} className="flex justify-center items-center relative">
             <Image
-              src={img.src}
-              alt={`Gallery image ${index + 1}`}
-              width={img.width}
-              height={img.height}
-              className="w-full h-full object-cover rounded-lg shadow-lg"
+              src={image.src}
+              alt={`Slide ${index + 1}`}
+              width={image.width}
+              height={image.height}
+              className="object-cover rounded-lg shadow-lg transition-transform duration-300"
+              priority
             />
-          </div>
+          </SwiperSlide>
         ))}
-      </div>
-      <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
-        <button
-          onClick={handlePrev}
-          className="bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 transition-all duration-200"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-      </div>
-      <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
-        <button
-          onClick={handleNext}
-          className="bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 transition-all duration-200"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
-      <div className="flex justify-center mt-4 space-x-2">
-        {[0, 1, 2].map((index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-              index === activeIndex ? "bg-blue-500" : "bg-gray-300"
-            }`}
-            onClick={() => setActiveIndex(index)}
-          />
-        ))}
-      </div>
+      </Swiper>
+      <style jsx>{`
+        .swiper-slide {
+          transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        .swiper-slide-prev, .swiper-slide-next {
+          transform: scale(0.6); /* Fixed smaller size for side slides */
+          filter: blur(8px); /* Apply blur effect to side slides */
+          max-height: 200px; /* Fixed height for side slides */
+          max-width: 300px; /* Fixed width for side slides */
+        }
+        .swiper-slide-active {
+          transform: scale(1.8); /* Enlarge the center slide significantly */
+          max-height: 600px; /* Increased height for the center slide */
+          max-width: 800px; /* Increased width for the center slide */
+        }
+      `}</style>
     </div>
   );
 };

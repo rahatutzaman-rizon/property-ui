@@ -3,10 +3,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
-
-import Button from '../Reusable/Button';
-import Spinner from '../Reusable/Spinner';
 import Link from 'next/link';
 
 export default function ProjectPage() {
@@ -32,88 +28,106 @@ export default function ProjectPage() {
 
   const activeProject = projects.find(project => project.status === activeTab);
 
+  const ImageCard = ({ src, className }) => {
+    const [imgError, setImgError] = useState(false);
+
+    return (
+      <motion.div
+        className={`relative overflow-hidden rounded-lg ${className}`}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
+      >
+        {!imgError ? (
+          <Image
+            src={src}
+            alt="Project Image"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-lg"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 text-sm">
+            Project update coming soon
+          </div>
+        )}
+      </motion.div>
+    );
+  };
+
+  const renderImageGrid = (images) => {
+    const gridImages = images.slice(0, 6);
+    const gridClasses = [
+      "col-start-1 col-end-2 row-start-1 row-end-3 bg-gray-300",
+      "col-start-1 col-end-2 row-start-3 row-end-5 bg-gray-400",
+      "col-start-2 col-end-3 row-start-1 row-end-3 bg-gray-500",
+      "col-start-2 col-end-3 row-start-3 row-end-4 bg-gray-600",
+      "col-start-2 col-end-3 row-start-4 row-end-5 bg-gray-700",
+      "col-start-3 col-end-4 row-start-1 row-end-5 bg-gray-800"
+    ];
+
+    return (
+      <div className="grid grid-cols-3 grid-rows-4 gap-2.5 h-[600px]">
+        {gridImages.map((image, index) => (
+          <ImageCard key={index} src={image} className={gridClasses[index]} />
+        ))}
+      </div>
+    );
+  };
+
+  const TabButton = ({ tab }) => (
+    <button
+      onClick={() => setActiveTab(tab)}
+      className={`flex items-center justify-between px-6 py-2 rounded-md text-sm sm:text-base w-full max-w-[330px] ${
+        activeTab === tab
+          ? 'bg-primary text-white'
+          : 'bg-white text-primary border border-primary'
+      }`}
+    >
+      <span className="flex-grow text-center">{tab.charAt(0).toUpperCase() + tab.slice(1)}</span>
+      {activeTab === tab ? (
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      ) : (
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      )}
+    </button>
+  );
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <h1 className="text-3xl font-bold text-center text-primary mb-4">Our Projects</h1>
       
       <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-        With years of expertise in asset management, we have consistently delivered robust financial growth for our clients. Our commitment to strategic planning, thorough market analysis, and proactive risk management has established us as a trusted partner in preserving and enhancing asset value.
+        Lorem ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem ipsum has been the industrys standard dummy text ever since the 1500s.
       </p>
       
       <div className="flex justify-center space-x-4 mb-8">
         {['ongoing', 'completed', 'upcoming'].map((tab) => (
-          <Button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`min-w-[150px] flex items-center justify-between ${
-              activeTab === tab
-                ? 'bg-teal-400 text-white'
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            {activeTab === tab ? (
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            ) : (
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            )}
-          </Button>
+          <TabButton key={tab} tab={tab} />
         ))}
       </div>
 
       {loading ? (
-        <Spinner loading={loading} />
+        <p>Loading...</p>
       ) : (
         activeProject && (
           <>
-            <h2 className="text-2xl mt-4 text-primary font-semibold text-center mb-5">
-              {activeProject.status.charAt(0).toUpperCase() + activeProject.status.slice(1)} Projects
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {activeProject.images.map((src, index) => (
-                <motion.div
-                  key={index}
-                  className="relative h-72 w-full overflow-hidden rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Image
-                    src={src}
-                    alt={`Project ${index + 1}`}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-lg transition-opacity duration-300"
-                  />
-                  <motion.div
-                    className="absolute inset-0 bg-white bg-opacity-10 flex items-center justify-center opacity-0 transition-opacity duration-300"
-                    whileHover={{ opacity: 1 }}
-                  >
-                  </motion.div>
-                </motion.div>
-              ))}
-
-            
-
-
-            </div>
-
+            {renderImageGrid(activeProject.images)}
             <div className="text-center mt-8">
-        
-        <Link href={`projects/${activeProject?._id}`}>
-          <Button className=" border border-primary  ">
-            See More »
-          </Button>
-          </Link>
-        </div>
+              <Link href={`projects/${activeProject?._id}`}>
+                <button className="border border-primary text-primary px-8 py-2 rounded-md hover:bg-primary hover:text-white transition-colors">
+                  See More »
+                </button>
+              </Link>
+            </div>
           </>
         )
       )}
-      
-   
     </div>
   );
 }

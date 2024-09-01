@@ -12,6 +12,7 @@ const Sidebar = () => {
     { href: '/dashboard', icon: Home, label: 'Dashboard' },
   
     { href: '/dashboard/ProjectUpdate', icon: Goal, label: 'ProjectUpdate' },
+    { href: '/dashboard/ClientUpdate', icon: User, label: 'ClientUpdate' },
     
   ];
 
