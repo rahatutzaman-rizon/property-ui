@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Spinner from '../Reusable/Spinner'; // Adjust the path as necessary
 
 export default function ProjectPage() {
   const [activeTab, setActiveTab] = useState('ongoing');
@@ -113,7 +114,7 @@ export default function ProjectPage() {
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <Spinner loading={loading} />
       ) : (
         activeProject && (
           <>

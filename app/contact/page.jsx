@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Send, User, MessageSquare, Clock, Globe } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, User, MessageSquare, Clock} from 'lucide-react';
 
 const LocationMap = () => {
   return (
@@ -7,9 +7,9 @@ const LocationMap = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-extrabold text-primary mb-4 tracking-tight">
-            JMC Technology Limited
+            JMC Asset Management Limited
           </h1>
-          <p className="text-xl text-primary/80">Innovating for a Connected Future</p>
+        
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -39,11 +39,9 @@ const LocationMap = () => {
               </p>
               <div className="flex justify-between text-sm text-primary/80 font-medium">
                 <span className="flex items-center">
-                  <Clock className="mr-2 h-5 w-5 text-primary" /> Mon-Fri: 9AM-6PM
+                  <Clock className="mr-2 h-5 w-5 text-primary" /> Sat-Thu: 9AM-6PM
                 </span>
-                <span className="flex items-center">
-                  <Globe className="mr-2 h-5 w-5 text-primary" /> www.jmctechnology.com
-                </span>
+             
               </div>
             </div>
           </div>
@@ -58,7 +56,7 @@ const LocationMap = () => {
                   <Phone className="mr-3 text-primary" size={24} /> +880 1321210095
                 </p>
                 <p className="text-primary flex items-center text-lg font-medium">
-                  <Mail className="mr-3 text-primary" size={24} /> info@jmctechnology.com
+                  <Mail className="mr-3 text-primary" size={24} /> jmc.asset@gmail.com
                 </p>
               </div>
             </div>

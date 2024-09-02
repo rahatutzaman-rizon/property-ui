@@ -5,6 +5,9 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Define the base URL for the API
+const BASE_URL = 'https://asset-server.bdcare.vip/client'; // Change this to your actual base URL
+
 export default function ClientTable() {
   const [clients, setClients] = useState([]);
   const [newClient, setNewClient] = useState({ reviewText: '' });
@@ -16,7 +19,7 @@ export default function ClientTable() {
 
   const fetchClients = async () => {
     try {
-      const response = await fetch('http://localhost:5000/client');
+      const response = await fetch(`${BASE_URL}`);
       const data = await response.json();
       setClients(data);
     } catch (error) {
@@ -30,32 +33,33 @@ export default function ClientTable() {
     try {
       const formData = new FormData();
       formData.append('reviewText', newClient.reviewText);
+
       if (file) {
         formData.append('image', file);
       }
 
-      const response = await fetch('http://localhost:5000/client', {
+      const response = await fetch(`${BASE_URL}`, {
         method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
-        fetchClients();
-        setNewClient({ reviewText: '' });
-        setFile(null);
+        setNewClient({ reviewText: '' }); // Reset the new client form
+        setFile(null); // Clear the selected file
         toast.success('Client added successfully');
+        fetchClients(); // Refresh data without reloading the page
       } else {
         throw new Error('Failed to add client');
       }
     } catch (error) {
       console.error('Error adding client:', error);
-      toast.error('Failed to add client');
+      toast.error('Wait please');
     }
   };
 
   const deleteClient = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/client/${id}`, {
+      const response = await fetch(`${BASE_URL}/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -121,15 +125,15 @@ export default function ClientTable() {
           <tbody>
             {clients.map((client) => (
               <tr key={client._id}>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-      <Image
-        src={client.imageUrl}
-        alt="Client"
-        width={64} // Set width in pixels
-        height={64} // Set height in pixels
-        className="object-cover rounded"
-      />
-    </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+                  <Image
+                    src={client.imageUrl}
+                    alt="Client"
+                    width={64}
+                    height={64}
+                    className="object-cover rounded"
+                  />
+                </td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
                   {client.reviewText}
                 </td>
