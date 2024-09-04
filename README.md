@@ -1,37 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JMC Asset Management Ltd.
 
-## Getting Started
-## Getting Started
+## About Us
 
-First, run the development server:
+JMC Asset Management Ltd. is a leading provider of asset management solutions. We specialize in optimizing asset performance and maximizing return on investment for our clients across various industries.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Our Location
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Head Office:**
+Aftabnagar, Dhaka, Bangladesh
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Our Services
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Asset Performance Optimization
+- Predictive Maintenance Solutions
+- IoT-based Asset Tracking
+- Custom Software Development for Asset Management
+- Equipment Lifecycle Management
 
-## Learn More
+## Why Choose Us
 
-To learn more about Next.js, take a look at the following resources:
+- Over 15 years of industry experience
+- Innovative, technology-driven solutions
+- Proven track record of client success
+- Dedicated team of expert professionals
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Recent Achievements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Awarded "Innovative Asset Management Firm of the Year" in 2023
+- Successfully implemented projects in 10+ industries
+- Achieved an average of 20% efficiency improvement for clients
 
-## Deploy on Vercel
+## Part of JMC Group of Companies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+JMC Asset Management Ltd. is proud to be a part of the esteemed JMC Group of Companies, a diversified conglomerate with interests in:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Technology Solutions
+- Real Estate Development
+- Renewable Energy
+- Healthcare Services
+- Financial Services
+
+## Contact Us
+
+For inquiries about our services:
+
+**Email:** info@jmcasset.com
+**Phone:** +880 2 1234 5678
+
+Visit our website for more information:
+[https://jmc-asset-management-ltd.bdcare.vip ](https://jmc-asset-management-ltd.bdcare.vip/)
+
+---
+
+© 2024 JMC Asset Management Ltd. All rights reserved.
