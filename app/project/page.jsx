@@ -99,12 +99,11 @@ export default function ProjectPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <h1 className="text-3xl font-bold text-center text-primary mb-4">Our Projects</h1>
+    <div className="container mx-auto px-4 py-24 max-w-7xl">
+      <h1 className="text-3xl font-bold text-center text-[#00567A] ">Our Projects</h1>
       
-      <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-        Lorem ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem ipsum has been the industrys standard dummy text ever since the 1500s.
+      <p className="text-center text-[#00567A] font-light mt-6 mb-16 max-w-2xl mx-auto">
+        Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industrys standard dummy text ever since the 1500s.
       </p>
       
       <div className="flex justify-center space-x-4 mb-8">

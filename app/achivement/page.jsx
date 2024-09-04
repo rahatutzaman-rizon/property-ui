@@ -7,10 +7,9 @@ export default function Achievement() {
      <div className=" text-primary min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <section className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4 transition-colors duration-300 ">Our Achievements</h2>
-          <p className="text-base sm:text-lg text-primary max-w-3xl mx-auto transition-colors duration-300 ">
-            Over the years, we have built a legacy of successful asset management by consistently delivering value to our clients. Our expertise in the industry, coupled with our innovative strategies, has enabled us to manage and grow substantial portfolios with a focus on long-term financial growth.
-          </p>
+          <h1 className="text-3xl font-bold text-center text-[#00567A]">Our Achievements</h1>
+          <p className="text-center text-[#00567A] font-light mt-6 mb-16 max-w-2xl mx-auto">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
         </section>
         
         <div className="space-y-12 sm:space-y-20">
@@ -47,7 +46,7 @@ function AchievementSection({ imageUrl, altText, description, isReversed }) {
         />
       </div>
       <div className="sm:w-1/2 w-full">
-        <p className="text-base sm:text-lg leading-relaxed text-primary transition-colors duration-300 ">{description}</p>
+        <p className="text-base sm:text-lg leading-relaxed text-[#00567A] font-light transition-colors duration-300 ">{description}</p>
       </div>
     </div>
   );

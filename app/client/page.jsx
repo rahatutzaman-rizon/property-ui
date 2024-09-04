@@ -33,7 +33,7 @@ const ClientsReviews = () => {
   const CustomPrevArrow = ({ onClick }) => (
     <button
       onClick={onClick}
-      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 sm:-translate-x-10 bg-primary hover:bg-teal-800 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary z-10"
+      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 sm:-translate-x-10  text-[#00567A] font-bold py-2 px-4 sm:py-3 sm:px-5"
     >
       <ChevronLeftIcon className="h-6 w-6 sm:h-8 sm:w-8" />
     </button>
@@ -43,7 +43,7 @@ const ClientsReviews = () => {
   const CustomNextArrow = ({ onClick }) => (
     <button
       onClick={onClick}
-      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 sm:translate-x-10 bg-primary hover:bg-teal-800 text-white font-bold py-2 px-4 sm:py-3 sm:px-5 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary z-10"
+      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 sm:translate-x-10  text-[#00567A] font-bold py-2 px-4 sm:py-3 sm:px-5"
     >
       <ChevronRightIcon className="h-6 w-6 sm:h-8 sm:w-8" />
     </button>
@@ -79,7 +79,7 @@ const ClientsReviews = () => {
 
   return (
     <div className="bg-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-primary">Clients Reviews</h2>
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#00567A]">Clients Reviews</h1>
       <Spinner loading={loading} />
 
       {!loading && reviews.length > 0 && (
@@ -87,7 +87,7 @@ const ClientsReviews = () => {
           <Slider {...settings}>
             {reviews.map((review, index) => (
               <div key={index} className="px-2 sm:px-3">
-                <div className="bg-white border border-primary rounded-lg shadow-lg p-3 sm:p-4 flex flex-col items-center h-[180px] sm:h-[250px]">
+                <div className="bg-[#FAFDFF] border border-[#C4EEFF] rounded-lg  p-3 sm:p-4 flex flex-col items-center h-[180px] sm:h-[250px]">
                   <div className="mb-3 sm:mb-4 w-16 sm:w-20 h-16 sm:h-20 relative overflow-hidden rounded-full">
                     <Image
                       src={review.imageUrl}
@@ -97,7 +97,7 @@ const ClientsReviews = () => {
                       className="rounded-full"
                     />
                   </div>
-                  <p className="text-primary w-3/4 sm:w-2/3 lg:w-full text-center lg:text-base sm:text-lg mt-4 md:text-sm flex-grow">
+                  <p className="text-[#00567A] w-3/4 sm:w-2/3 lg:w-full text-center lg:text-sm sm:text-lg mt-4 md:text-xs flex-grow">
                     {review.reviewText}
                   </p>
                 </div>

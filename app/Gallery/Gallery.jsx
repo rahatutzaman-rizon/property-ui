@@ -36,7 +36,7 @@ const images = [
 
 const Gallery = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto my-10">
+    <div className="w-full max-w-7xl mx-auto my-24">
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -52,7 +52,7 @@ const Gallery = () => {
         }}
         pagination={{ clickable: true }}
         modules={[EffectCoverflow, Pagination]}
-        className="h-[700px] bg-gray-100 p-10 rounded-lg shadow-xl"
+        className="h-[700px]   rounded-lg "
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className="flex justify-center items-center relative">
@@ -61,7 +61,7 @@ const Gallery = () => {
               alt={`Slide ${index + 1}`}
               width={image.width}
               height={image.height}
-              className="object-cover rounded-lg shadow-lg transition-transform duration-300"
+              className="object-cover rounded-lg transition-transform duration-300"
               priority
             />
           </SwiperSlide>

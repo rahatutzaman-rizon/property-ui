@@ -1,4 +1,4 @@
-'use client';
+"use client"; // Ensure this is at the top
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -32,7 +32,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-screen overflow-hidden ">
+    <div className="relative h-screen overflow-hidden">
       {/* Carousel-style Background Image Slider */}
       <div 
         className="flex transition-transform duration-700 ease-in-out h-full"
@@ -53,15 +53,15 @@ const Banner = () => {
       </div>
 
       {/* Text Content */}
-      <div className="absolute inset-0 flex items-center px-8 md:px-12 lg:px-24  sm:ml-8 md:ml-56 mt-[-64px]">
+      <div className="absolute inset-0 flex items-center px-8 md:px-12 lg:px-24 sm:ml-8 md:ml-56 mt-[-64px]">
         <div className="max-w-2xl">
-          <p className="text-lg font-semibold text-primary uppercase tracking-widest mb-4 ">
-            Discover | Dream | Live
+          <p className="text-sm font-semibold text-primary text-opacity-70 uppercase tracking-widest mb-4 space-x-4">
+            <span>Discover</span> <span>|</span> <span>Dream</span><span>|</span><span>Live</span>
           </p>
-          <h1 className=" md:text-5xl lg:text-7xl text-4xl font-bold text-primary leading-tight mb-16" >
+          <h1 className="md:text-5xl lg:text-8xl text-4xl font-bold text-primary leading-tight my-10">
             Unlock Your Ideal Space
           </h1>
-          <p className="text-lg text-primary mb-8">
+          <p className="text-md text-primary mb-8 text-opacity-70">
             JMC Asset Management is dedicated to providing top-tier asset management services. 
             Our expertise ensures that your assets are managed with the highest level of professionalism and care.
           </p>
@@ -73,22 +73,6 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* Navigation Buttons - Always Visible */}
-      {/* <button
-        onClick={() => changeImage('prev')}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-4 rounded-full bg-primary  transition-all duration-300 z-30"
-        aria-label="Previous slide"
-      >
-        <FaChevronLeft size={24} />
-      </button> */}
-      {/* <button
-        onClick={() => changeImage('next')}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-4 rounded-full bg-primary transition-all duration-300 z-30"
-        aria-label="Next slide"
-      >
-        <FaChevronRight size={24} />
-      </button> */}
-
       {/* Navigation Dots */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
         {images.map((_, index) => (
@@ -98,7 +82,7 @@ const Banner = () => {
             className={`w-4 h-4 rounded-full transition-all duration-300 ${
               index === currentImageIndex
                 ? 'bg-primary scale-125'
-                : 'bg-teal-700 '
+                : 'bg-teal-700'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
