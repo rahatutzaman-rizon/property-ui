@@ -89,17 +89,6 @@ const ProjectTable = () => {
     }
   };
 
-  const handleDeleteProject = async (projectId) => {
-    try {
-      await axios.delete(`${BASE_URL}/projects/${projectId}`);
-      fetchProjects();
-      toast.success("Project deleted successfully!");
-    } catch (error) {
-      console.error('Error deleting project:', error);
-      toast.error("Failed to delete project. Please try again.");
-    }
-  };
-
   const handleDeleteImage = async (projectId, imageUrl) => {
     try {
       const encodedImageUrl = encodeURIComponent(imageUrl);
