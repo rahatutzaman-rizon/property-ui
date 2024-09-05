@@ -5,10 +5,11 @@ import { animateScroll as scroll } from 'react-scroll';
 
 import AboutUs from "./about/page";
 import ClientsReviews from "./client/page";
-import Achievement from "./achivement/page";
+
 import Projects from "./project/page";
 import Banner from "./Banner/Banner";
 import Gallery from "./Gallery/Gallery";
+import Achievement from './achievement/page';
 
 export default function Home() {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Home() {
       <Banner />
       <AboutUs />
       <Projects />
-      <Achievement />
+       <Achievement></Achievement>
       <Gallery />
       <ClientsReviews />
     </main>

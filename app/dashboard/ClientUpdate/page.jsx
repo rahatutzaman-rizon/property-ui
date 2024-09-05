@@ -6,7 +6,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Define the base URL for the API
-const BASE_URL = 'https://asset-server.bdcare.vip/client'; // Change this to your actual base URL
+
+
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 
 export default function ClientTable() {
   const [clients, setClients] = useState([]);
@@ -19,7 +22,7 @@ export default function ClientTable() {
 
   const fetchClients = async () => {
     try {
-      const response = await fetch(`${BASE_URL}`);
+      const response = await fetch(`${BASE_URL}/client`);
       const data = await response.json();
       setClients(data);
     } catch (error) {
@@ -38,7 +41,7 @@ export default function ClientTable() {
         formData.append('image', file);
       }
 
-      const response = await fetch(`${BASE_URL}`, {
+      const response = await fetch(`${BASE_URL}/client`, {
         method: 'POST',
         body: formData,
       });
@@ -59,7 +62,7 @@ export default function ClientTable() {
 
   const deleteClient = async (id) => {
     try {
-      const response = await fetch(`${BASE_URL}/${id}`, {
+      const response = await fetch(`${BASE_URL}/client/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {

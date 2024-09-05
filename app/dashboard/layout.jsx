@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100 lg:flex-row">
+    <div className="flex flex-col h-screen bg-gray-100 lg:flex-row ">
       {/* Mobile sidebar toggle */}
       <div className="lg:hidden">
         <button 

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const BASE_URL = 'https://asset-server.bdcare.vip';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 
 const ProjectTable = () => {
   const [projects, setProjects] = useState([]);

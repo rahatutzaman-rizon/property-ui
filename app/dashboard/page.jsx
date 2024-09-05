@@ -25,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className="min-h-screen bg-gray-50 text-gray-800 ">
       <Head>
         <title>JMC Asset Management Ltd</title>
         <link rel="icon" href="/favicon.ico" />

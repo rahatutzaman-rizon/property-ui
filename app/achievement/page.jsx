@@ -9,7 +9,7 @@ export default function Achievement() {
         <section className="text-center mb-16">
           <h1 className="text-3xl font-bold text-center text-[#00567A]">Our Achievements</h1>
           <p className="text-center text-[#00567A] font-light mt-6 mb-16 max-w-2xl mx-auto">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+          Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.</p>
         </section>
         
         <div className="space-y-12 sm:space-y-20">
