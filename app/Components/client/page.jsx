@@ -6,8 +6,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
-import Spinner from '../Reusable/Spinner';
-import { BASE_URL } from '../api/config'; // Import the base URL
+import Spinner from '../../Reusable/Spinner';
+import { BASE_URL } from '../../api/config'; // Import the base URL
 
 const ClientsReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -87,10 +87,10 @@ const ClientsReviews = () => {
           <Slider {...settings}>
             {reviews.map((review, index) => (
               <div key={index} className="px-2 sm:px-3">
-                <div className="bg-[#FAFDFF] border border-[#C4EEFF] rounded-lg  p-3 sm:p-4 flex flex-col items-center sm:h-[250px]">
-                  <div className="mb-3 sm:mb-4 w-20 sm:w-20 h-20 sm:h-20 relative overflow-hidden rounded-full">
+                <div className="bg-[#FAFDFF] border border-[#C4EEFF] rounded-lg  p-3 sm:p-4 flex flex-col items-center h-[180px] sm:h-[250px]">
+                  <div className="mb-3 sm:mb-4 w-16 sm:w-20 h-16 sm:h-20 relative overflow-hidden rounded-full">
                     <Image
-                      src={review.imageUrl}   
+                      src={review.imageUrl}
                       alt="Client"
                       layout="fill"
                       objectFit="cover"

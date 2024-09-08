@@ -188,7 +188,7 @@ const Header = () => {
             </div>
           )} */}
           <NavLink href="/project">Project</NavLink>
-          <NavLink href="/">Blogs</NavLink>
+          <NavLink href="/blog">Blogs</NavLink>
           <NavLink href="/achievement">Our Achievement</NavLink>
           {user ? (
             <>

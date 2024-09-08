@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Home, User, Settings, HelpCircle, Goal, LogOut } from 'lucide-react';
+import { Home, User, Settings, HelpCircle, Goal, LogOut, Workflow } from 'lucide-react';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/config'; // Adjust the path as needed
 
@@ -16,6 +16,7 @@ const Sidebar = () => {
     { href: '/dashboard', icon: Home, label: 'Dashboard' },
     { href: '/dashboard/ProjectUpdate', icon: Goal, label: 'Project Update' },
     { href: '/dashboard/ClientUpdate', icon: User, label: 'Client Update' },
+    { href: '/dashboard/SeoUpdate', icon: Workflow, label: 'Seo Update' },
   ];
 
   const handleLogout = async () => {

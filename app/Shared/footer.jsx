@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-import img from '../images/jmc-logo.png';
+import img from '../Asset/images/jmc-logo.png';
 
 export default function Footer() {
   return (

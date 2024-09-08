@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 import auth from "../firebase/config"; // Ensure this path is correct
 import { useEffect, useState } from "react";
-import Spinner from "../Reusable/Spinner"; // Adjust path as needed
+import Spinner from "../../Reusable/Spinner"; // Adjust path as needed
 
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
