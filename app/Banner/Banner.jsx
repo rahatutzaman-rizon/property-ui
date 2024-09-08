@@ -39,7 +39,7 @@ const Banner = () => {
         style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
       >
         {images.map((img, index) => (
-          <div key={index} className="flex-shrink-0 w-full h-full relative">
+          <div key={index} className="absolute inset-0 flex transition-transform duration-700 ease-in-out h-full">
             <Image
               src={img}
               alt={`Slide ${index + 1}`}
@@ -53,7 +53,8 @@ const Banner = () => {
       </div>
 
       {/* Text Content */}
-      <div className="absolute inset-0 flex items-center px-8 md:px-12 lg:px-24 sm:ml-8 md:ml-56 mt-[-64px]">
+      <div className="max-w-7xl mx-auto absolute inset-0 flex items-center px-8">
+      {/* <div className="relative z-10 flex items-center px-8 md:px-12 lg:px-24 h-full"> */}
         <div className="max-w-2xl">
           <p className="text-sm font-semibold text-primary text-opacity-70 uppercase tracking-widest mb-4 space-x-4">
             <span>Discover</span> <span>|</span> <span>Dream</span><span>|</span><span>Live</span>
@@ -66,8 +67,8 @@ const Banner = () => {
             Our expertise ensures that your assets are managed with the highest level of professionalism and care.
           </p>
           <Link href="/" passHref>
-            <Button className="">
-              See More »
+            <Button className=" border border-cyan bg-cyan-100/30 ">
+              Get in touch with us »
             </Button>
           </Link>
         </div>
@@ -79,10 +80,10 @@ const Banner = () => {
           <button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
               index === currentImageIndex
                 ? 'bg-primary scale-125'
-                : 'bg-teal-700'
+                : 'border-primary border'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

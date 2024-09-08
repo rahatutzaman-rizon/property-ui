@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Button from "../Reusable/Button";
 import Image from "next/image";
-import img from "../../public/images/jmc-logo.png";
+import img from "../../public/images/asset.svg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import auth from "../firebase/config";
@@ -71,16 +71,16 @@ const Header = () => {
   );
 
   return (
-    <header className="bg-[#f6fdff] sticky top-0 z-30">
+    <header className="fixed top-0  w-full z-50 backdrop-blur-md bg-opacity-50 border-b ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
               <Image
+              sizes="100px"
                 src={img}
                 alt="jmc asset management logo"
-                width={140}
-                height={100}
+                width={80}
                 className="rounded-lg transition-opacity duration-300"
               />
             </Link>
@@ -94,16 +94,16 @@ const Header = () => {
                 className="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
               >
                 <span>About Us</span>
-                <svg className="ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                {/* <svg className="ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
+                </svg> */}
               </button>
-              {isAboutDropdownOpen && (
+              {/* {isAboutDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
                   <DropdownLink href="/about">Our Team</DropdownLink>
                   <DropdownLink href="/about">History</DropdownLink>
                 </div>
-              )}
+              )} */}
             </div>
             <NavLink href="/project">Project</NavLink>
             <NavLink href="/">Blogs</NavLink>
@@ -181,12 +181,12 @@ const Header = () => {
           >
             About Us
           </button>
-          {isAboutDropdownOpen && (
+          {/* {isAboutDropdownOpen && (
             <div className="pl-4 space-y-1">
               <DropdownLink href="/about">Our Team</DropdownLink>
               <DropdownLink href="/about">History</DropdownLink>
             </div>
-          )}
+          )} */}
           <NavLink href="/project">Project</NavLink>
           <NavLink href="/">Blogs</NavLink>
           <NavLink href="/achievement">Our Achievement</NavLink>
@@ -195,13 +195,13 @@ const Header = () => {
               <NavLink href="/dashboard">Dashboard</NavLink>
               <button
                 onClick={handleLogout}
-                className="text-gray-800 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                className=""
               >
                 Logout
               </button>
             </>
           ) : (
-            <NavLink href="/login">Login</NavLink>
+            <NavLink href="/login">Sign in</NavLink>
           )}
         </div>
       </div>

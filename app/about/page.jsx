@@ -11,7 +11,7 @@ const AboutUs = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left Side Text */}
         <div className="order-2 lg:order-1 ">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00567A]">About Us</h2>
+          <h2 className="text-2xl mb-8 sm:text-3xl md:text-4xl font-bold text-[#00567A]">About Us</h2>
           <p className="text-sm sm:text-base font-light lg:text-lg  text-[#00567A]">
             At JMC Asset Management, we are dedicated to optimizing your financial future. With decades of experience in the financial sector, we provide expert asset management services tailored to meet the unique needs of each client.
           </p>
