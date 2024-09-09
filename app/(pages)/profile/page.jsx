@@ -3,9 +3,10 @@
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
-import auth from "../firebase/config"; // Ensure this path is correct
+import auth from "../../firebase/config"; // Ensure this path is correct
 import { useEffect, useState } from "react";
 import Spinner from "../../Reusable/Spinner"; // Adjust path as needed
+import Image from "next/image";
 
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -45,11 +46,13 @@ const Profile = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Profile</h2>
         <div className="flex flex-col items-center space-y-4">
-          <img
-            src={userData.photoURL}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover"
-          />
+        <Image
+        src={src}
+        alt={alt}
+        width={96}  // Width in pixels (matches w-24)
+        height={96} // Height in pixels (matches h-24)
+        className="object-cover"
+      />
           <div className="text-center">
             <h3 className="text-xl font-semibold">{userData.displayName}</h3>
             <p className="text-gray-600">{userData.email}</p>

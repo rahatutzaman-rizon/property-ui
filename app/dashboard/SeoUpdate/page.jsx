@@ -69,7 +69,7 @@ export default function BannerManagement() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-8 text-gray-800">Banner Management</h2>
+      <h2 className="text-3xl font-bold mb-8 text-gray-800">Seo Management</h2>
 
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
         <h3 className="text-xl font-semibold mb-4 text-gray-700">

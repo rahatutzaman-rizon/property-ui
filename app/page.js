@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { animateScroll as scroll } from 'react-scroll';
-import Banner from './Components/Banner/Banner';
-import AboutUs from './Components/about/page';
-import ProjectPage from './Components/project/page';
-import Gallery from './Components/Gallery/Gallery';
-import ClientsReviews from './Components/client/page';
+
 import Spinner from '../app/Reusable/Spinner'; // Import the Spinner component
+import Banner from './(pages)/Banner/Banner';
+import AboutUs from './(pages)/about/page';
+import ProjectPage from './(pages)/project/page';
+import Gallery from './(pages)/Gallery/Gallery';
+import ClientsReviews from './(pages)/client/page';
 
 export default function Home() {
   const [bannerLoading, setBannerLoading] = useState(true);

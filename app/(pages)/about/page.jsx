@@ -1,34 +1,81 @@
-"use client";
+"use client"; // Ensure this is at the top
 
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Head from 'next/head';
 
-const AboutUs = () => {
-  const [seoData, setSeoData] = useState({ title: '', description: '' });
+import Head from 'next/head';
+import Spinner from '../../Reusable/Spinner'; // Import the Spinner component
+
+const Banner = () => {
+ 
+  const [metadata, setMetadata] = useState({
+    title: 'Default Title',
+    description: 'Default Description',
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+ 
 
   useEffect(() => {
-    const fetchSEOData = async () => {
+    const fetchMetadata = async () => {
       try {
-        const response = await fetch('http://localhost:5000/banner/');
-        if (!response.ok) {
-          throw new Error('Failed to fetch SEO data');
-        }
+        setLoading(true);
+        const response = await fetch('http://localhost:5000/banner');
+        if (!response.ok) throw new Error('Metadata fetch failed');
         const data = await response.json();
-        setSeoData(data[0] || {}); // Assuming there's at least one object in the array
+        if (data.length > 0) {
+          const { title, description } = data[0];
+          setMetadata({ title, description });
+        }
       } catch (error) {
-        console.error('Error fetching SEO data:', error);
-        setSeoData({ title: 'About Us - Your Company Name', description: 'Learn more about Your Company Name, our mission, values, and team. Discover why we are the right choice for your needs.' });
+        setError(error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchSEOData();
+
+    fetchMetadata();
   }, []);
+
+  useEffect(() => {
+    // Update meta tags
+    document.title = metadata.title;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', metadata.description);
+    } else {
+      const newMetaDescription = document.createElement('meta');
+      newMetaDescription.name = 'description';
+      newMetaDescription.content = metadata.description;
+      document.head.appendChild(newMetaDescription);
+    }
+  }, [metadata]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [images.length]);
+
+  // const changeImage = (direction) => {
+  //   setCurrentImageIndex((prevIndex) => {
+  //     if (direction === 'next') {
+  //       return (prevIndex + 1) % images.length;
+  //     } else {
+  //       return (prevIndex - 1 + images.length) % images.length;
+  //     }
+  //   });
+  // };
+
+  if (loading) return <Spinner />; // Use Spinner component for loading state
+  if (error) return <p>Error loading metadata</p>;
 
   return (
     <>
       <Head>
-        <title>{seoData.title || 'About Us'}</title>
-        <meta name="description" content={seoData.description || 'Learn more about our company, mission, values, and team.'} />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
       </Head>
 
       <div className='bg-[#F5FCFF] py-8'>
@@ -76,8 +123,11 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+
+
+      
     </>
   );
 };
 
-export default AboutUs;
+export default Banner;
