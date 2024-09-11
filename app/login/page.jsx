@@ -13,6 +13,7 @@ import {
 import auth from "../firebase/config"; // Ensure this path is correct
 import Spinner from "../Reusable/Spinner"; // Adjust the path as needed
 import Link from "next/link";
+import Image from "next/image";
 
 const Login = () => {
   const router = useRouter();
@@ -44,16 +45,23 @@ const Login = () => {
     return () => unsubscribe();
   }, [router]);
 
-  // Handle email/password login
+
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // Redirect will be handled by the onAuthStateChanged listener
+      const response = await axios.post('http://localhost:5000/login', {
+        email,
+        password,
+      });
+      const { token } = response.data;
+      localStorage.setItem('token', token); // Store token
+      router.push('/dashboard'); // Redirect to dashboard
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.msg || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -96,11 +104,14 @@ const Login = () => {
 
         {userInfo ? (
           <div className="text-center mb-4">
-            <img
-              src={userInfo.photoURL || "/default-avatar.png"} // Use a default image if photoURL is null
-              alt="User Avatar"
-              className="w-16 h-16 rounded-full mx-auto mb-2"
-            />
+          <Image
+        src={userInfo.photoURL || "/default-avatar.png"} // Fallback to default image
+        alt="User Avatar"
+        width={64} // Set the width of the image
+        height={64} // Set the height of the image
+        className="rounded-full" // Add styling classes
+        onError={(e) => e.target.src = '/default-avatar.png'} // Handle error to fallback if image fails to load
+      />
             <p className="text-lg font-semibold">{userInfo.displayName || "User"}</p>
             <p className="text-sm text-gray-600">{userInfo.email}</p>
           </div>

@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import { BarChart2, DollarSign, TrendingUp, PieChart, Briefcase, Activity } from 'lucide-react';
 
-export default function Home() {
+export default function DashboardHome() {
   const [activeTab, setActiveTab] = useState('overview');
 
   const renderContent = () => {

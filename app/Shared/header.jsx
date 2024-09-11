@@ -11,35 +11,23 @@ import auth from "../firebase/config";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const aboutDropdownRef = useRef(null);
   const profileDropdownRef = useRef(null);
   const router = useRouter();
   const [user] = useAuthState(auth);
 
-  const toggleAboutDropdown = () => {
-    setIsAboutDropdownOpen(!isAboutDropdownOpen);
-    setIsProfileDropdownOpen(false);
-  };
-
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
-    setIsAboutDropdownOpen(false);
   };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    setIsAboutDropdownOpen(false);
     setIsProfileDropdownOpen(false);
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (aboutDropdownRef.current && !aboutDropdownRef.current.contains(event.target)) {
-        setIsAboutDropdownOpen(false);
-      }
       if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
         setIsProfileDropdownOpen(false);
       }
@@ -58,26 +46,25 @@ const Header = () => {
   const DropdownLink = ({ href, children }) => (
     <Link
       href={href}
-      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out"
+      className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
     >
       {children}
     </Link>
   );
 
   const NavLink = ({ href, children }) => (
-    <Link href={href} className="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium">
+    <Link href={href} className="text-primary hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium">
       {children}
     </Link>
   );
 
   return (
-    <header className="fixed top-0  w-full z-50 backdrop-blur-md bg-opacity-50 border-b ">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-opacity-50 border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
               <Image
-              sizes="100px"
                 src={img}
                 alt="jmc asset management logo"
                 width={80}
@@ -88,45 +75,35 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-            <div className="relative" ref={aboutDropdownRef}>
-              <button
-                onClick={toggleAboutDropdown}
-                className="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
-              >
-                <span>About Us</span>
-                {/* <svg className="ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg> */}
-              </button>
-              {/* {isAboutDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
-                  <DropdownLink href="/about">Our Team</DropdownLink>
-                  <DropdownLink href="/about">History</DropdownLink>
-                </div>
-              )} */}
-            </div>
-            <NavLink href="/project">Project</NavLink>
-            <NavLink href="/">Blogs</NavLink>
-            <NavLink href="/achievement">Achievement</NavLink>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/about">About Us</NavLink>
+            <NavLink href="/properties">Properties</NavLink>
+            <NavLink href="/consultation">Consultation</NavLink>
+            <NavLink href="/services">Services</NavLink>
+            <NavLink href="/blogs">Blogs</NavLink>
             <NavLink href="/contact">Contact</NavLink>
 
             {user ? (
               <div className="relative" ref={profileDropdownRef}>
                 <button
                   onClick={toggleProfileDropdown}
-                  className="text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
+                  className="text-primary hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
                 >
                   <span>Profile</span>
                   <svg className="ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </button>
                 {isProfileDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 flex flex-col">
                     <DropdownLink href="/dashboard">Dashboard</DropdownLink>
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out"
+                      className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
                     >
                       Logout
                     </button>
@@ -174,28 +151,20 @@ const Header = () => {
 
       {/* Mobile menu */}
       <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <button
-            onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
-            className="text-gray-800 hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
-          >
-            About Us
-          </button>
-          {/* {isAboutDropdownOpen && (
-            <div className="pl-4 space-y-1">
-              <DropdownLink href="/about">Our Team</DropdownLink>
-              <DropdownLink href="/about">History</DropdownLink>
-            </div>
-          )} */}
-          <NavLink href="/project">Project</NavLink>
-          <NavLink href="/blog">Blogs</NavLink>
-          <NavLink href="/achievement">Our Achievement</NavLink>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/about">About Us</NavLink>
+          <NavLink href="/properties">Properties</NavLink>
+          <NavLink href="/consultation">Consultation</NavLink>
+          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/blogs">Blogs</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
           {user ? (
             <>
               <NavLink href="/dashboard">Dashboard</NavLink>
               <button
                 onClick={handleLogout}
-                className=""
+                className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
               >
                 Logout
               </button>

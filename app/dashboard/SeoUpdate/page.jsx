@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { PlusIcon, PencilIcon, TrashIcon } from 'lucide-react'
 
-const API_URL = 'http://localhost:5000/banner/'
+const API_URL = 'https://asset-server.bdcare.vip/banner/'
 
 export default function BannerManagement() {
   const [banners, setBanners] = useState([])
@@ -125,6 +125,9 @@ export default function BannerManagement() {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Description
               </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
@@ -133,6 +136,7 @@ export default function BannerManagement() {
               <tr key={banner._id}>
                 <td className="px-6 py-4 whitespace-nowrap">{banner.title}</td>
                 <td className="px-6 py-4">{banner.description}</td>
+                <td className="px-6 py-4">{banner.status}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <button
                     onClick={() => handleEdit(banner)}
