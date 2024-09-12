@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const properties = {
   malibag: [
@@ -84,7 +85,9 @@ const PropertyListing = () => {
         <div key={area} className="mb-12">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-semibold capitalize text-primary mt-12">{area}</h2>
-            <a href="#" className="text-primary hover:underline">See more</a>
+            <Link href="/properties/propertiesDetails" className="text-primary hover:underline">
+        See more
+      </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       {listings.map((property) => (

@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 // Initialize Firebase (check if already initialized to avoid errors)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
+ export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
 export default auth;

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import PropTypes from 'prop-types';
+
 
 const Button = ({ onClick, children, className }) => {
   return (
@@ -14,15 +14,6 @@ const Button = ({ onClick, children, className }) => {
   );
 };
 
-Button.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
 
-Button.defaultProps = {
-  onClick: () => {},
-  className: '',
-};
 
 export default Button;
