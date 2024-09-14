@@ -22,11 +22,7 @@ const images = [
     width: 1200,
     height: 800,
   },
-  // {
-  //   src: "https://i.ibb.co/pncCvS5/wendy-liga-a-Sl-IN-fh-KKU-unsplash.jpg",
-  //   width: 1200,
-  //   height: 800,
-  // },
+
   {
     src: "https://i.ibb.co/nsFfbNg/ryan-spencer-WJDR8-Qx-VR8-unsplash.jpg",
     width: 1200,

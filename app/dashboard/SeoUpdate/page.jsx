@@ -8,7 +8,7 @@ const API_URL = 'https://asset-server.bdcare.vip/banner/'
 export default function BannerManagement() {
   const [banners, setBanners] = useState([])
   const [editingBanner, setEditingBanner] = useState(null)
-  const [newBanner, setNewBanner] = useState({ title: '', description: '' })
+  const [newBanner, setNewBanner] = useState({ title: '', description: '',status:'' })
 
   useEffect(() => {
     fetchBanners()
@@ -26,7 +26,7 @@ export default function BannerManagement() {
 
   const handleEdit = (banner) => {
     setEditingBanner(banner)
-    setNewBanner({ title: banner.title, description: banner.description })
+    setNewBanner({ title: banner.title, description: banner.description,status:banner.status })
   }
 
   const handleDelete = async (id) => {
@@ -46,7 +46,7 @@ export default function BannerManagement() {
         body: JSON.stringify(newBanner),
       })
       setEditingBanner(null)
-      setNewBanner({ title: '', description: '' })
+      setNewBanner({ title: '', description: ''  ,status:''})
       fetchBanners()
     } catch (error) {
       console.error('Error updating banner:', error)
@@ -60,7 +60,7 @@ export default function BannerManagement() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newBanner),
       })
-      setNewBanner({ title: '', description: '' })
+      setNewBanner({ title: '', description: '',status:'' })
       fetchBanners()
     } catch (error) {
       console.error('Error creating banner:', error)
@@ -88,6 +88,13 @@ export default function BannerManagement() {
             placeholder="Description"
             value={newBanner.description}
             onChange={(e) => setNewBanner({ ...newBanner, description: e.target.value })}
+            className="border rounded-md p-2 flex-grow"
+          />
+          <input
+            type="text"
+            placeholder="Status"
+            value={newBanner.status}
+            onChange={(e) => setNewBanner({ ...newBanner, status: e.target.value })}
             className="border rounded-md p-2 flex-grow"
           />
           {editingBanner ? (

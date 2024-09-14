@@ -103,7 +103,16 @@ export default function PropertyDetails() {
       <div className="grid grid-cols-3 gap-4 max-w-7xl mx-auto h-[520px]">
         {images.map((image, index) => (
           <div key={index} className={`${gridClasses[index]} relative overflow-hidden rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg hover:scale-105`}>
-            <img src={image} alt={`Property ${index + 1}`} className="w-full h-full object-cover" />
+           
+          <Image
+        src={image}
+        alt={`Property ${index + 1}`}
+        layout="fill"
+        objectFit="cover"
+        className="absolute inset-0"
+      />
+
+
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -131,7 +140,7 @@ export default function PropertyDetails() {
           <div className="bg-white text-gray-800 rounded-lg p-8 max-w-md w-full shadow-2xl">
             <h2 className="text-2xl font-bold mb-4 text-primary">Interested in this property?</h2>
             <p className="text-lg mb-4">Thank you for your interest! Our team will contact you shortly with more information about this stunning property.</p>
-            <p className="text-sm text-gray-600 mb-6">We're excited to help you find your dream home!</p>
+            <p className="text-sm text-gray-600 mb-6">We are excited to help you find your dream home!</p>
             <div className="text-right">
               <button
                 onClick={closeModal}

@@ -28,9 +28,9 @@ export default async function ProjectPage({ params }) {
     <div className="container mx-auto px-4 py-8">
     {/* Project Title */}
     <div className="mb-8 text-center">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-4">Project Details</h1>
+      <h1 className="text-4xl font-extrabold text-gray-800 mb-4 mt-24">Project Details </h1>
       <p className="text-lg text-gray-600">
-        Current Status: <span className="font-bold text-primary">{project.status}</span>
+        Current Status: <span className="font-bold text-primary">{project.status} {project._id}</span>
       </p>
     </div>
 

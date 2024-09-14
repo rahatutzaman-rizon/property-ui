@@ -79,8 +79,8 @@ const Header = () => {
             <NavLink href="/about">About Us</NavLink>
             <NavLink href="/properties">Properties</NavLink>
             <NavLink href="/consultation">Consultation</NavLink>
-            <NavLink href="/services">Services</NavLink>
-            <NavLink href="/blogs">Blogs</NavLink>
+            
+            <NavLink href="/blog">Blogs</NavLink>
             <NavLink href="/contact">Contact</NavLink>
 
             {user ? (
@@ -156,8 +156,8 @@ const Header = () => {
           <NavLink href="/about">About Us</NavLink>
           <NavLink href="/properties">Properties</NavLink>
           <NavLink href="/consultation">Consultation</NavLink>
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/blogs">Blogs</NavLink>
+        
+          <NavLink href="/blog">Blogs</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           {user ? (
             <>

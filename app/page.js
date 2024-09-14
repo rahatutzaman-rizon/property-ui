@@ -9,6 +9,8 @@ import AboutUs from './(pages)/about/page';
 import ProjectPage from './(pages)/project/page';
 import Gallery from './(pages)/Gallery/Gallery';
 import ClientsReviews from './(pages)/client/page';
+import Player from './(components)/Player';
+import FeaturedProperties from './(components)/FeautureProperties';
 
 export default function Home() {
   const [bannerLoading, setBannerLoading] = useState(true);
@@ -28,11 +30,13 @@ export default function Home() {
 
   return (
     <main className="bg-white">
-      {bannerLoading && <Spinner />} {/* Show Spinner while loading */}
-      <Banner onLoad={handleBannerLoaded} /> {/* Pass the handleBannerLoaded function as prop */}
+      {bannerLoading && <Spinner />} 
+      <Banner onLoad={handleBannerLoaded} /> 
       <AboutUs />
       <ProjectPage />
-      {/* <Achievement /> */}
+       <Player></Player>
+       <FeaturedProperties></FeaturedProperties>
+
       <Gallery />
       <ClientsReviews />
     </main>
