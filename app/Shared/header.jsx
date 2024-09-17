@@ -103,7 +103,7 @@ const Header = () => {
                     <DropdownLink href="/dashboard">Dashboard</DropdownLink>
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
+                      className="block w-full text-left px-4 py-2 text-lg text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
                     >
                       Logout
                     </button>

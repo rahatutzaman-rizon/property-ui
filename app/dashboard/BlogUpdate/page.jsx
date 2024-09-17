@@ -1,267 +1,315 @@
 "use client"
 
+
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
-import SunEditor from 'suneditor-react';
-import 'suneditor/dist/css/suneditor.min.css';
+const BASE_URL = 'http://localhost:5000/blog';
 
-// const SunEditor = dynamic(() => import('suneditor-react'), { ssr: false });
-
-export default function EditPost() {
-
-  const [post, setPost] = useState({
+const BlogsPage = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [selectedBlog, setSelectedBlog] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [form, setForm] = useState({
     title: '',
     slug: '',
     author: '',
     publishDate: '',
-    tags: [],
-    categories: [],
+    tags: '',
+    categories: '',
     summary: '',
     description: '',
     content: '',
-    status: 'draft',
+    thumbnailUrl: '',
+    extraImages: '',
+    seo: {
+      metaTitle: '',
+      metaDescription: '',
+      metaKeywords: '',
+      canonicalUrl: ''
+    },
+    status: 'draft'
   });
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    {
-      fetchPost();
-    }
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get(BASE_URL);
+        setBlogs(response.data);
+      } catch (error) {
+        console.error('Failed to fetch blogs:', error);
+      }
+    };
+    fetchBlogs();
   }, []);
 
-  const fetchPost = async () => {
-    try {
-      const response = await fetch(`/api/posts/${id}`);
-      if (!response.ok) throw new Error('Failed to fetch post');
-      const data = await response.json();
-      setPost(data);
-    } catch (error) {
-      console.error('Error fetching post:', error);
-    } finally {
-      setLoading(false);
-    }
+  const handleOpenModal = (blog = null) => {
+    setIsEditing(!!blog);
+    setSelectedBlog(blog);
+    setForm(blog ? {
+      ...blog,
+      tags: blog.tags.join(', '),
+      categories: blog.categories.join(', '),
+      extraImages: blog.extraImages.map(img => img.url).join(', '),
+      seo: {
+        ...blog.seo,
+        metaKeywords: blog.seo.metaKeywords.join(', ')
+      }
+    } : {
+      title: '',
+      slug: '',
+      author: '',
+      publishDate: '',
+      tags: '',
+      categories: '',
+      summary: '',
+      description: '',
+      content: '',
+      thumbnailUrl: '',
+      extraImages: '',
+      seo: {
+        metaTitle: '',
+        metaDescription: '',
+        metaKeywords: '',
+        canonicalUrl: ''
+      },
+      status: 'draft'
+    });
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPost(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleEditorChange = (content) => {
-    setPost(prev => ({ ...prev, content }));
+    setForm(prevForm => ({
+      ...prevForm,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSaving(true);
-    try {
-      const response = await fetch(`/api/posts/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(post),
-      });
-      if (!response.ok) throw new Error('Failed to update post');
-      router.push('/');
-    } catch (error) {
-      console.error('Error updating post:', error);
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this post?')) {
-      try {
-        const response = await fetch(`/api/posts/${id}`, { method: 'DELETE' });
-        if (!response.ok) throw new Error('Failed to delete post');
-        router.push('/');
-      } catch (error) {
-        console.error('Error deleting post:', error);
+    const blogData = {
+      ...form,
+      tags: form.tags.split(',').map(tag => tag.trim()),
+      categories: form.categories.split(',').map(cat => cat.trim()),
+      extraImages: form.extraImages.split(',').map(url => ({ url })),
+      seo: {
+        ...form.seo,
+        metaKeywords: form.seo.metaKeywords.split(',').map(keyword => keyword.trim())
       }
+    };
+
+    try {
+      if (isEditing) {
+        await axios.put(`${BASE_URL}/${selectedBlog._id}`, blogData);
+      } else {
+        await axios.post(BASE_URL, blogData);
+      }
+      handleCloseModal();
+      setBlogs(prevBlogs => isEditing
+        ? prevBlogs.map(blog => blog._id === selectedBlog._id ? blogData : blog)
+        : [...prevBlogs, blogData]
+      );
+    } catch (error) {
+      console.error('Failed to save blog:', error);
     }
   };
 
-  if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${BASE_URL}/${id}`);
+      setBlogs(prevBlogs => prevBlogs.filter(blog => blog._id !== id));
+    } catch (error) {
+      console.error('Failed to delete blog:', error);
+    }
+  };
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
-      <div className="flex justify-between items-center mb-6">
-        <button onClick={() => router.back()} className="text-blue-600 hover:text-blue-800">
-          ← Back
-        </button>
-        <h1 className="text-3xl font-bold">Edit Post</h1>
-        <div className="space-x-2">
-          <button onClick={() => {}} className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">
-            Preview
-          </button>
-          <button onClick={handleDelete} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
-            Delete
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <h1 className="text-2xl font-bold text-center mb-4">Blog Management</h1>
+      <button
+        onClick={() => handleOpenModal()}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Add Blog
+      </button>
+      <table className="min-w-full bg-white border border-gray-200">
+        <thead>
+          <tr>
+            <th className="px-4 py-2 border-b">Title</th>
+            <th className="px-4 py-2 border-b">Author</th>
+            <th className="px-4 py-2 border-b">Publish Date</th>
+            <th className="px-4 py-2 border-b">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {blogs.map(blog => (
+            <tr key={blog._id}>
+              <td className="px-4 py-2 border-b">{blog.title}</td>
+              <td className="px-4 py-2 border-b">{blog.author}</td>
+              <td className="px-4 py-2 border-b">{blog.publishDate}</td>
+              <td className="px-4 py-2 border-b">
+                <button
+                  onClick={() => handleOpenModal(blog)}
+                  className="px-2 py-1 bg-yellow-500 text-white rounded"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(blog._id)}
+                  className="ml-2 px-2 py-1 bg-red-500 text-white rounded"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 className="text-xl font-semibold mb-4">Post Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">Title</label>
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-4 rounded shadow-md max-w-md w-full">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input
-                id="title"
                 name="title"
-                type="text"
-                value={post.title}
+                value={form.title}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
+                placeholder="Title"
+                className="w-full p-2 border border-gray-300 rounded"
               />
-            </div>
-            <div>
-              <label htmlFor="slug" className="block text-gray-700 text-sm font-bold mb-2">Slug</label>
               <input
-                id="slug"
                 name="slug"
-                type="text"
-                value={post.slug}
+                value={form.slug}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                required
+                placeholder="Slug"
+                className="w-full p-2 border border-gray-300 rounded"
               />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label htmlFor="author" className="block text-gray-700 text-sm font-bold mb-2">Author</label>
               <input
-                id="author"
                 name="author"
-                type="text"
-                value={post.author}
+                value={form.author}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Author"
+                className="w-full p-2 border border-gray-300 rounded"
               />
-            </div>
-            <div>
-              <label htmlFor="publishDate" className="block text-gray-700 text-sm font-bold mb-2">Publish Date</label>
               <input
-                id="publishDate"
                 name="publishDate"
-                type="datetime-local"
-                value={post.publishDate.slice(0, 16)}
+                type="date"
+                value={form.publishDate}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full p-2 border border-gray-300 rounded"
               />
-            </div>
-          </div>
-          <div className="mt-4">
-            <label htmlFor="summary" className="block text-gray-700 text-sm font-bold mb-2">Summary</label>
-            <textarea
-              id="summary"
-              name="summary"
-              value={post.summary}
-              onChange={handleChange}
-              rows={3}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-          <div className="mt-4">
-            <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              value={post.description}
-              onChange={handleChange}
-              rows={3}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-        </div>
-
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 className="text-xl font-semibold mb-4">Content</h2>
-          <SunEditor
-            setContents={post.content}
-            onChange={handleEditorChange}
-            setOptions={{
-              height: 400,
-              buttonList: [
-                ['undo', 'redo'],
-                ['font', 'fontSize', 'formatBlock'],
-                ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-                ['removeFormat'],
-                '/',
-                ['outdent', 'indent'],
-                ['align', 'horizontalRule', 'list', 'table'],
-                ['link', 'image', 'video'],
-                ['fullScreen', 'showBlocks', 'codeView'],
-                ['preview', 'print'],
-                ['save', 'template'],
-              ],
-            }}
-          />
-        </div>
-
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 className="text-xl font-semibold mb-4">Metadata</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="tags" className="block text-gray-700 text-sm font-bold mb-2">Tags</label>
               <input
-                id="tags"
                 name="tags"
-                type="text"
-                value={post.tags.join(', ')}
-                onChange={(e) => setPost(prev => ({ ...prev, tags: e.target.value.split(',').map(tag => tag.trim()) }))}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={form.tags}
+                onChange={handleChange}
+                placeholder="Tags (comma separated)"
+                className="w-full p-2 border border-gray-300 rounded"
               />
-            </div>
-            <div>
-              <label htmlFor="categories" className="block text-gray-700 text-sm font-bold mb-2">Categories</label>
               <input
-                id="categories"
                 name="categories"
-                type="text"
-                value={post.categories.join(', ')}
-                onChange={(e) => setPost(prev => ({ ...prev, categories: e.target.value.split(',').map(category => category.trim()) }))}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={form.categories}
+                onChange={handleChange}
+                placeholder="Categories (comma separated)"
+                className="w-full p-2 border border-gray-300 rounded"
               />
-            </div>
-          </div>
-          <div className="mt-4">
-            <label htmlFor="status" className="block text-gray-700 text-sm font-bold mb-2">Status</label>
-            <select
-              id="status"
-              name="status"
-              value={post.status}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            >
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
-              <option value="archived">Archived</option>
-            </select>
+              <textarea
+                name="summary"
+                value={form.summary}
+                onChange={handleChange}
+                placeholder="Summary"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <textarea
+                name="description"
+                value={form.description}
+                onChange={handleChange}
+                placeholder="Description"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <textarea
+                name="content"
+                value={form.content}
+                onChange={handleChange}
+                placeholder="Content"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="thumbnailUrl"
+                value={form.thumbnailUrl}
+                onChange={handleChange}
+                placeholder="Thumbnail URL"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="extraImages"
+                value={form.extraImages}
+                onChange={handleChange}
+                placeholder="Extra Images URLs (comma separated)"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="seo.metaTitle"
+                value={form.seo.metaTitle}
+                onChange={handleChange}
+                placeholder="SEO Meta Title"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="seo.metaDescription"
+                value={form.seo.metaDescription}
+                onChange={handleChange}
+                placeholder="SEO Meta Description"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="seo.metaKeywords"
+                value={form.seo.metaKeywords}
+                onChange={handleChange}
+                placeholder="SEO Meta Keywords (comma separated)"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="seo.canonicalUrl"
+                value={form.seo.canonicalUrl}
+                onChange={handleChange}
+                placeholder="SEO Canonical URL"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <input
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+                placeholder="Status (draft/published)"
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+              <div className="flex justify-end space-x-2">
+                <button
+                  type="button"
+                  onClick={handleCloseModal}
+                  className="px-4 py-2 bg-gray-300 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                  {isEditing ? 'Update Blog' : 'Create Blog'}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-
-        <div className="flex justify-end space-x-2">
-          <button
-            type="button"
-            onClick={() => router.push('/')}
-            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={saving}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-blue-300"
-          >
-            {saving ? 'Saving...' : 'Save Changes'}
-          </button>
-        </div>
-      </form>
+      )}
     </div>
   );
-}
+};
+
+export default BlogsPage;
+
