@@ -5,6 +5,12 @@ import "slick-carousel/slick/slick-theme.css";
 import { ChevronLeft, ChevronRight, BedDouble, Bath, Move } from 'lucide-react';
 import Image from 'next/image';
 
+import img1 from '../Asset/propertiesicon/bed.png';
+import img2 from '../Asset/propertiesicon/bath-tub.png';
+import img3  from '../Asset/propertiesicon/network.png';
+import img4  from '../Asset/propertiesicon/Icon.png';
+
+
 const properties = [
   {
     id: 1,
@@ -74,31 +80,65 @@ const properties = [
 ];
 
 const PropertyCard = ({ property }) => (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden mx-2">
+  <div className="bg-white rounded-lg shadow-md overflow-hidden mx-2 mb-6">
 <Image
   src={property.image}
   alt={`Property ${property.id}`}
-  width={800} // You can set a specific width
-  height={600} // You can set a specific height
-  className="w-full h-72 object-cover"
+  width={500} // You can set a specific width
+  height={700} // You can set a specific height
+  className="w-96 h-72 object-cover"
 />
     <div className="p-4">
-      <h3 className="text-xl font-semibold text-primary mb-2">{property.price}</h3>
-      <div className="flex justify-between text-primary mb-2">
+      <h3 className="text-xl font-semibold text-primary mb-2 ">{property.price}</h3>
+      <div className="flex justify-between text-primary mb-2 font-medium">
         <span className="flex items-center">
-          <BedDouble className="w-4 h-4 mr-1" />
+        <Image 
+              src={img1}
+              alt="Area"
+              width={20}
+              height={20}
+              className="mr-2"
+            />
+
           {property.beds} Bed
         </span>
         <span className="flex items-center">
-          <Bath className="w-4 h-4 mr-1" />
+        <Image 
+              src={img2}
+              alt="Area"
+              width={20}
+              height={20}
+              className="mr-2"
+            />
           {property.baths} Bath
         </span>
         <span className="flex items-center">
-          <Move className="w-4 h-4 mr-1" />
+        <Image 
+              src={img3}
+              alt="Area"
+              width={20}
+              height={20}
+              className="mr-2"
+            />
           {property.area} sqft
         </span>
       </div>
+
+      <div className='flex items-center font-medium'>
+
+
+      <Image 
+              src={img4}
+              alt="Area"
+              width={20}
+              height={20}
+              className="mr-2"
+            />
       <p className="text-primary text-sm">{property.location}</p>
+
+      </div>
+
+     
     </div>
   </div>
 );
@@ -156,11 +196,11 @@ const FeaturedProperties = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 ">
       <h2 className="text-4xl font-bold text-center text-primary mb-2">
         Explore Our Featured Properties
       </h2>
-      <p className="text-center text-2xl text-primary mb-8">
+      <p className="text-center text-md text-primary mb-8">
         Find the Place Where Memories Begin.
       </p>
       

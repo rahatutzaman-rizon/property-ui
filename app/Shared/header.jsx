@@ -46,20 +46,20 @@ const Header = () => {
   const DropdownLink = ({ href, children }) => (
     <Link
       href={href}
-      className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
+      className="block w-full text-left px-4 py-2 text-lg text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
     >
       {children}
     </Link>
   );
 
   const NavLink = ({ href, children }) => (
-    <Link href={href} className="text-primary hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium">
+    <Link href={href} className="text-primary hover:text-teal-600 px-3 py-2 rounded-md text-lg font-medium">
       {children}
     </Link>
   );
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-opacity-50 border-b">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-opacity-50 border-b text-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
@@ -74,8 +74,8 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-            <NavLink href="/">Home</NavLink>
+          <nav className="hidden md:ml-8 md:flex md:items-center md:space-x-4 z-12 ">
+            <NavLink className="" href="/">Home</NavLink>
             <NavLink href="/about">About Us</NavLink>
             <NavLink href="/properties">Properties</NavLink>
             <NavLink href="/consultation">Consultation</NavLink>
@@ -87,7 +87,7 @@ const Header = () => {
               <div className="relative" ref={profileDropdownRef}>
                 <button
                   onClick={toggleProfileDropdown}
-                  className="text-primary hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"
+                  className="text-primary hover:text-gray-600 px-3 py-2 rounded-md text-lg font-medium inline-flex items-center"
                 >
                   <span>Profile</span>
                   <svg className="ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -164,7 +164,7 @@ const Header = () => {
               <NavLink href="/dashboard">Dashboard</NavLink>
               <button
                 onClick={handleLogout}
-                className="block w-full text-left px-4 py-2 text-sm text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
+                className="block w-full text-left px-4 py-2 text-lg text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
               >
                 Logout
               </button>

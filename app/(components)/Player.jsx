@@ -16,7 +16,7 @@ export default function Player() {
 
   const fetchVideoData = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/vedio');
+      const res = await axios.get('https://asset-server.bdcare.vip/vedio');
       // Assuming the API response contains an array of videos and we're interested in the first one
       if (res.data.length > 0) {
         const { link, title, description } = res.data[0]; // Update this based on your actual data structure
