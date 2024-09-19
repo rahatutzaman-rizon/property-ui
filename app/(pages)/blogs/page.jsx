@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/blog')
+        const res = await axios.get('https://asset-server.bdcare.vip/blog')
         setBlogs(res.data)
       } catch (error) {
         console.error('Error fetching blogs:', error)

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaUser, FaCalendarAlt, FaTags, FaArrowRight, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://asset-server.bdcare.vip';
 // Fetch all blog posts
 async function getAllBlogPosts() {
   const res = await fetch(`${BASE_URL}/blog`);

@@ -46,7 +46,7 @@ const Header = () => {
   const DropdownLink = ({ href, children }) => (
     <Link
       href={href}
-      className="block w-full text-left px-4 py-2 text-lg text-primary hover:bg-gray-100 transition duration-150 ease-in-out"
+      className="block w-full text-left px-4 py-2 text-lg  hover:bg-gray-100 transition duration-150 ease-in-out"
     >
       {children}
     </Link>
@@ -59,7 +59,7 @@ const Header = () => {
   );
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-md bg-opacity-50 border-b text-lg">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-2xl bg-opacity-50 border-b text-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
@@ -67,14 +67,14 @@ const Header = () => {
               <Image
                 src={img}
                 alt="jmc asset management logo"
-                width={80}
-                className="rounded-lg transition-opacity duration-300"
+                width={90}
+                className="transition-opacity duration-300 "
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:ml-8 md:flex md:items-center md:space-x-4 z-12 ">
+          <nav className="hidden md:ml-6 md:flex md:items-center md:space-x-4 z-20 ">
             <NavLink className="" href="/">Home</NavLink>
             <NavLink href="/about">About Us</NavLink>
             <NavLink href="/properties">Properties</NavLink>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-import img from '../Asset/images/jmc-logo.png';
+import img from '../../public/images/asset.svg';
 
 export default function Footer() {
   return (
@@ -12,9 +12,9 @@ export default function Footer() {
             <Image
               src={img}
               alt="JMC Asset Management logo"
-              width={120}
+              width={90}
               height={100}
-              className="rounded-lg transition-opacity duration-300 mb-4"
+              className="transition-opacity duration-300 mb-4"
             />
             <p className="font-semibold">JMC Asset Management Ltd.</p>
           </div>

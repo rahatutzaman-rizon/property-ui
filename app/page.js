@@ -9,7 +9,7 @@ import AboutUs from './(pages)/about/page';
 import ProjectPage from './(pages)/project/page';
 import Gallery from './(pages)/Gallery/Gallery';
 import ClientsReviews from './(pages)/client/page';
-import Player from './(components)/Player';
+// import Player from './(components)/Player';
 import FeaturedProperties from './(components)/FeautureProperties';
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
       <Banner onLoad={handleBannerLoaded} /> 
       <AboutUs />
       <ProjectPage />
-       <Player></Player>
+       {/* <Player></Player> */}
        <FeaturedProperties></FeaturedProperties>
 
       <Gallery />
