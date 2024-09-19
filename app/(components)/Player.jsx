@@ -40,10 +40,10 @@ export default function Player() {
           />
         </div>
 
-        <div className="p-4">
+        {/* <div className="p-4">
           <h2 className="text-2xl font-bold">{videoData.title}</h2>
           <p className="mt-2 text-gray-600">{videoData.description}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

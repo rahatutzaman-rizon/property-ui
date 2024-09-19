@@ -20,7 +20,7 @@ const Banner = () => {
     const fetchMetadata = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/banner');
+        const response = await fetch('https://asset-server.bdcare.vip/banner');
         if (!response.ok) throw new Error('Metadata fetch failed');
         const data = await response.json();
         if (data.length > 0) {

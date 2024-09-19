@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/blog';
+const BASE_URL = 'https://asset-server.bdcare.vip/blog';
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([]);
