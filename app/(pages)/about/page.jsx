@@ -83,8 +83,8 @@ const About = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#00567A]">About Us</h2>
               <p className="text-sm sm:text-base font-light lg:text-lg text-[#00567A]">
                 At JMC Asset Management, we optimize financial futures through expert asset management services tailored for each client.
-              </p>
-              <p className="mt-4 text-sm sm:text-base text-[#00567A]">
+              
+            
                 Our focus lies in helping individuals and organizations manage, grow, and protect their assets, ensuring sustainable long-term growth.
               </p>
             </div>
